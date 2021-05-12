@@ -1,0 +1,13 @@
+{
+    "name": "WCCFirstAppWebService",
+    "version": "1.0.0",
+    "description": "Node.js on Docker",
+    "author": "Sergey Zolotaryow(Software Developerm WCC), <developer@wildcodecrew.onmicrosoft.com>",
+    "main": "service.js",
+    "scripts": {
+      "start": "node service.js"
+    },
+    "dependencies": {
+      "express": "^4.16.1"
+    }
+}
