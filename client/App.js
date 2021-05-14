@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import '@fluentui/react-native';
 import {
   SafeAreaView,
   ScrollView,
