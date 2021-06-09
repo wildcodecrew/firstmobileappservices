@@ -19,12 +19,20 @@ export class CardItem extends Component {
             title: {
                 fontSize: 12,
             },
+            thumbnail: {
+                width: 100,
+                height: 100,
+            }
         })
 
+        if(card.image != null) img = card.image;
+        else img = '../images/noimage.png';
+        
         return (
             <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
                 <Text>{card.title}</Text>
+                <Image  style={styles.thumbnail} source={require(img)} />
             </View>
             </TouchableOpacity>
         );

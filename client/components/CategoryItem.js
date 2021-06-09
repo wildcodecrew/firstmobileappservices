@@ -11,24 +11,32 @@ export class CategoryItem extends Component {
             },
             item: {
                 backgroundColor: '#c2e3ff',
-                padding: 20,
-                height: 10,
-                marginVertical: 8,
-                marginHorizontal: 16,
+                padding: 10,
+                height: 5,
+                marginVertical: 4,
+                marginHorizontal: 6,
             },
             title: {
-                fontSize: 12,
+                fontSize: 6,
             },
+            thumbnail: {
+                width: 50,
+                height: 50,
+            }
         })
 
 
 
         const {onPress, category} = this.props;
 
+        if(category.image != null) img = category.image;
+        else img = '../images/noimage.png';
+
         return (
             <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
                 <Text>{category.title}</Text>
+                <Image style={styles.thumbnail} source={require(img)} />
             </View>
             </TouchableOpacity>
         );

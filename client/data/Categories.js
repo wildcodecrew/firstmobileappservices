@@ -2,21 +2,21 @@ export var Categories = [
     {
         key: 1,
         title: 'Игрушки',
-        img: '/'
+        img: '../images/1.jpg'
     },
     {
         key: 2,
         title: 'Действия',
-        img: '/'
+        img: '../images/2.jpg'
     },
     {
         key: 3,
         title: 'Еда',
-        img: '/'
+        img: '../images/3.jpg'
     },
     {
         key: 4,
         title: 'Люди',
-        img: '/'
+        img: '../images/4.jpg'
     }
 ]
