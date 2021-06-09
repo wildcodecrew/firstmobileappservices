@@ -1,53 +1,112 @@
 import React, {Component} from 'react';
-import { StyleSheet, Button, View, Text } from 'react-native';
-import Container from 'react-native-container';
+import { Button, View, Text, SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
+import _ from "lodash";
+import {Categories} from "../data/Categories";
+import {Cards} from "../data/Cards";
+import {CategoryItem} from "../components/CategoryItem";
+import {CardItem} from "../components/CardItem";
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    item: {
+        backgroundColor: '#c2e3ff',
+        padding: 20,
+        height: 10,
+        marginVertical: 8,
+        marginHorizontal: 16,
+    },
+    title: {
+        fontSize: 12,
+    },
+})
 
 export class HomeScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {catSelect: 1, shelf:[]};
+    }
+
+    onCatPress = (item) => {
+        console.log('onCatPress');
+        this.setState({ catSelect: item.key });
+        console.log(this.state);
+    };
+
+    onCardPress = (item) => {
+        console.log('onCardPress');
+        let shelf = this.state.shelf;
+        shelf.push(item);
+        this.setState({ shelf: shelf });
+        console.log(this.state.shelf);
+    };
+
+    renderCat = ({item}) => {
+        return (
+            <CategoryItem
+                category={item}
+                onPress={this.onCatPress.bind(this, item)}
+            />
+        );
+    };
+
+    renderCard = ({item}) => {
+        return (
+            <CardItem
+                card={item}
+                onPress={this.onCardPress.bind(this, item)}
+            />
+        );
+    };
+
     render = () => {
+        var sortedCat = _.filter(Cards, {'categorie': this.state.catSelect})
     return (
-        <View style={{flexDirection:'column', flexWrap:'wrap', alignItems: 'center', justifyContent: 'center', backgroundColor: '#faf9f8', paddingTop: '1%',paddingBottom:'1%'}}>
-            <Button
-                title="Категории карточек"
-                onPress={() => this.props.navigation.push('Categories')} />
+<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-            <Text h3 style={{fontWeight: 'bold', textAlign:'left', paddingTop: 5, paddingBottom:5, marginLeft: '2%', color: '#a4262c', fontSize: 28}}>Лучшие карточки</Text>
-            <Container col style={pageStyle.cardsFeed}>
+    <Text>Главный экран</Text>
 
-            </Container>
-            <Text h3 style={{fontWeight: 'bold', textAlign:'left', paddingTop: 2, paddingBottom: 2, marginLeft: '2%', color: '#742774', fontSize: 28}}>Лучшие категории</Text>
-            <Container col style={pageStyle.catFeed}>
+    <View style={styles.container}>
+        <FlatList
+            data={this.state.shelf}
+            renderItem={this.renderCard}
+            keyExtractor={item => item.id.toString()}
+            onPress={this.onCatPress.bind(this)}
+            horizontal={true}
+        />
+    </View>
 
-            </Container>
-        </View>
-        )
+    <View style={styles.container}>
+        <FlatList
+            data={sortedCat}
+            renderItem={this.renderCard}
+            keyExtractor={item => item.id.toString()}
+            onPress={this.onCatPress.bind(this)}
+            horizontal={true}
+        />
+    </View>
+
+    <View style={styles.container}>
+        <FlatList
+            data={Categories}
+            renderItem={this.renderCat}
+            keyExtractor={item => item.key.toString()}
+            onPress={this.onCatPress.bind(this)}
+
+            horizontal={true}
+        />
+    </View>
+
+    <Button
+        title="Категории карточек"
+        onPress={() => this.props.navigation.push('Categories')} />
+</View>
+
+
+
+    )
     }
 }
-
-const pageStyle = StyleSheet.create({
-    cardsFeed: {
-      marginTop: '2%',
-      marginBottom: '2%',
-      backgroundColor: '#e1dfdd',
-      shadowColor: "#000",
-      shadowOffset: {
-            width: 0,
-            height: 6,
-      },
-      shadowOpacity: 0.39,
-      shadowRadius: 8.30,
-      elevation: 13
-    },
-    catFeed: {
-        marginTop: '1%',
-        marginBottom: '1%',
-        backgroundColor: '#edebe9',
-        shadowColor: "#000",
-        shadowOffset: {
-                width: 0,
-                height: 2,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 4.15,
-        elevation: 7
-    }
-  });

@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "client",
-    "slug": "client",
+    "name": "PecsCards",
+    "slug": "PecsCards",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#faf9f8"
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
