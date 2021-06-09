@@ -43,7 +43,7 @@ export class HomeScreen extends Component {
         this.setState({ shelf: shelf });
         console.log(this.state.shelf);
 
-        if(item.sound != null) music = card.sound;
+        if(item.sound != null) music = item.sound;
         else music = '../sounds/nosound.wav';
 
         var clicker = new Sound(music, Sound.MAIN_BUNDLE, (error) => {
@@ -60,8 +60,6 @@ export class HomeScreen extends Component {
               }
             });
         });
-          
-        clicker.setVolume(0.5);
     };
 
     renderCat = ({item}) => {
