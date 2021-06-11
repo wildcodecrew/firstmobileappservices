@@ -5,7 +5,7 @@ import {Categories} from "../data/Categories";
 import {Cards} from "../data/Cards";
 import {CategoryItem} from "../components/CategoryItem";
 import {CardItem} from "../components/CardItem";
-var Sound = require('react-native-sound');
+import { Audio } from 'expo-av';
 
 const styles = StyleSheet.create({
     container: {
@@ -46,20 +46,11 @@ export class HomeScreen extends Component {
         if(item.sound != null) music = item.sound;
         else music = '../sounds/nosound.wav';
 
-        var clicker = new Sound(music, Sound.MAIN_BUNDLE, (error) => {
-            if (error) {
-              console.log('Sound Error: ', error);
-              return;
-            }
-        
-            clicker.play((success) => {
-              if (success) {
-                console.log('OK');
-              } else {
-                console.log('Fail');
-              }
-            });
-        });
+        const { notify } = await Audio.Sound.createAsync(
+            require(music)
+        );
+
+        notify.asyncPlay();
     };
 
     renderCat = ({item}) => {
