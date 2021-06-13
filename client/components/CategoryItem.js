@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
-import {StyleSheet, TouchableOpacity, Image, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, TouchableOpacity, Image, Text, View } from 'react-native';
+import { Asset } from 'expo-asset';
 export class CategoryItem extends Component {
 
 
@@ -26,18 +27,20 @@ export class CategoryItem extends Component {
 
 
 
-        const {onPress, category} = this.props;
+        const { onPress, category } = this.props;
         let img;
+        if (category.img != null) img = category.img;
+        else img = '../assets/images/noimage.png';
+        const [assets] = useAssets(require(img));
 
-        if(category.img != null) img = category.img;
-        else img = '../images/noimage.png';
-
+        if(!assets) return <AppLoading />;
+        
         return (
             <TouchableOpacity onPress={onPress}>
-            <View style={styles.item}>
-                <Text>{category.title}</Text>
-                <Image style={styles.thumbnail} source={{uri: img}} />
-            </View>
+                <View style={styles.item}>
+                    <Text>{category.title}</Text>
+                    <Image style={styles.thumbnail} source={require(img)} />
+                </View>
             </TouchableOpacity>
         );
     };
