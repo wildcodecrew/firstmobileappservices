@@ -4,7 +4,6 @@ export class CategoryItem extends Component {
 
 
     render = () => {
-
         const styles = StyleSheet.create({
             container: {
                 flex: 1,
@@ -28,15 +27,16 @@ export class CategoryItem extends Component {
 
 
         const {onPress, category} = this.props;
+        let img;
 
-        if(category.image != null) img = category.image;
+        if(category.img != null) img = category.img;
         else img = '../images/noimage.png';
 
         return (
             <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
                 <Text>{category.title}</Text>
-                <Image style={styles.thumbnail} source={require(img)} />
+                <Image style={styles.thumbnail} source={{uri: img}} />
             </View>
             </TouchableOpacity>
         );
