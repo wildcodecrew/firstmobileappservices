@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Image, Text, View} from 'react-native';
-import { Asset } from 'expo-asset';
 export class CardItem extends Component {
 
     render = () => {
@@ -28,17 +27,13 @@ export class CardItem extends Component {
         })
 
         if(card.img != null) img = card.img;
-        else img = '../assets/images/noimage.png';
-
-        const [assets] = useAssets(require(img));
-
-        if(!assets) return <AppLoading />;
+        else img = require('../assets/images/noimage.png');
         
         return (
             <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
                 <Text>{card.title}</Text>
-                <Image style={styles.thumbnail} source={require(img)} />
+                <Image style={styles.thumbnail} source={img} />
             </View>
             </TouchableOpacity>
         );

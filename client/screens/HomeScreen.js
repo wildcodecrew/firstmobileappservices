@@ -45,8 +45,8 @@ export class HomeScreen extends Component {
         console.log(this.state.shelf);
 
         if(item.sound != null) music = item.sound;
-        else music = '../assets/sounds/nosound.wav';
-        notify = await Audio.Sound.createAsync({uri: music});
+        else music = require('../assets/sounds/nosound.wav');
+        notify = await Audio.Sound.createAsync(music);
         setSound(notify);
         await notify.asyncPlay();
     };
