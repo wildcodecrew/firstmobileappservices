@@ -27,15 +27,12 @@ export class CategoryItem extends Component {
 
 
         const { onPress, category } = this.props;
-        let img;
-        if (category.img != null) img = category.img;
-        else img = require('../assets/images/noimage.png');
         
         return (
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.item}>
                     <Text>{category.title}</Text>
-                    <Image style={styles.thumbnail} source={img} />
+                    <Image style={styles.thumbnail} source={ category.img } />
                 </View>
             </TouchableOpacity>
         );

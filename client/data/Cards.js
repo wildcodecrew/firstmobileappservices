@@ -9,7 +9,7 @@ export var Cards = [
     {
         'id': 2,
         'img': require('../assets/images/2.jpg'),
-        'sound': null,
+        'sound': require('../assets/sounds/nosound.wav'),
         'title': 'Пирамидка',
         'categorie': 1
     },
@@ -23,7 +23,7 @@ export var Cards = [
     {
         'id': 4,
         'img': require('../assets/images/4.jpg'),
-        'sound': null,
+        'sound': require('../assets/sounds/nosound.wav'),
         'title': 'Хочу',
         'categorie': 2
     },
@@ -57,14 +57,14 @@ export var Cards = [
     },
     {
         'id': 9,
-        'img': null,
-        'sound': null,
+        'img': require('../assets/images/noimage.png'),
+        'sound': require('../assets/sounds/nosound.wav'),
         'title': 'Мама',
         'categorie': 4
     },
     {
         'id': 10,
-        'img': null,
+        'img': require('../assets/images/noimage.png'),
         'sound': require('../assets/sounds/cards/kremlin.wav'),
         'title': 'Путин',
         'categorie': 4

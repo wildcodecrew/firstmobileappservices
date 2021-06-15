@@ -4,7 +4,6 @@ export class CardItem extends Component {
 
     render = () => {
         const {onPress, card} = this.props;
-        let img;
 
         const styles = StyleSheet.create({
             container: {
@@ -25,15 +24,12 @@ export class CardItem extends Component {
                 height: 100,
             }
         })
-
-        if(card.img != null) img = card.img;
-        else img = require('../assets/images/noimage.png');
         
         return (
             <TouchableOpacity onPress={onPress}>
             <View style={styles.item}>
                 <Text>{card.title}</Text>
-                <Image style={styles.thumbnail} source={img} />
+                <Image style={styles.thumbnail} source={ card.img } />
             </View>
             </TouchableOpacity>
         );
