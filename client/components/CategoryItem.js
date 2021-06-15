@@ -27,12 +27,18 @@ export class CategoryItem extends Component {
 
 
         const { onPress, category } = this.props;
+        let img;
+        if (category.img != null) img = category.img;
+        else img = '../assets/images/noimage.png';
+        const [assets] = useAssets(require(img));
+
+        if(!assets) return <AppLoading />;
         
         return (
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.item}>
                     <Text>{category.title}</Text>
-                    <Image style={styles.thumbnail} source={ category.img } />
+                    <Image style={styles.thumbnail} source={{ uri: img }} />
                 </View>
             </TouchableOpacity>
         );

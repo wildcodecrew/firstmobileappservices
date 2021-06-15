@@ -39,10 +39,14 @@ export class HomeScreen extends Component {
         const [notify, setSound] = useState();
         console.log('onCardPress');
         let shelf = this.state.shelf;
+        let music;
         shelf.push(item);
         this.setState({ shelf: shelf });
         console.log(this.state.shelf);
-        notify = await Audio.Sound.createAsync(item.sound);
+
+        if(item.sound != null) music = item.sound;
+        else music = '../assets/sounds/nosound.wav';
+        notify = await Audio.Sound.createAsync({uri: music});
         setSound(notify);
         await notify.asyncPlay();
     };
